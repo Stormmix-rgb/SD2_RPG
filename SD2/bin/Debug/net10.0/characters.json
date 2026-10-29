@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1, "name": "Red Prince", "class": "Knight",
+    "hp": 130, "mp": 20,
+    "strength": 15, "defense": 14, "intelligence": 5, "agility": 6,
+    "resistances": { "Fire": 0.5, "Water": 1.5, "Earth": 0.5 },
+    "skills": ["Slash", "ShieldBash", "FlameStrike"]
+  },
+  {
+    "id": 2, "name": "Ifan ben-Mezd", "class": "Wayfarer",
+    "hp": 90, "mp": 35,
+    "strength": 10, "defense": 8, "intelligence": 8, "agility": 14,
+    "resistances": { "Air": 0.5, "Earth": 1.5, "Water": 0.5 },
+    "skills": ["PiercingArrow", "PoisonDart", "WindGust"]
+  },
+  {
+    "id": 3, "name": "Fane", "class": "Geomancer",
+    "hp": 85, "mp": 60,
+    "strength": 5, "defense": 6, "intelligence": 16, "agility": 9,
+    "resistances": { "Earth": 0.5, "Fire": 1.5, "Air": 0.5 },
+    "skills": ["StoneSpike", "PoisonCloud", "MendingEarth"]
+  }
+]

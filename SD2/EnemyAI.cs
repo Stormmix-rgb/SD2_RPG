@@ -1,0 +1,6 @@
+namespace RpgBattle;
+
+class EnemyAI
+{
+    
+}

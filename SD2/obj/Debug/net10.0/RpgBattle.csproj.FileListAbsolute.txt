@@ -1,0 +1,16 @@
+D:\Code\Projects\SD2\bin\Debug\net10.0\characters.json
+D:\Code\Projects\SD2\bin\Debug\net10.0\enemy_groups.json
+D:\Code\Projects\SD2\bin\Debug\net10.0\RpgBattle.exe
+D:\Code\Projects\SD2\bin\Debug\net10.0\RpgBattle.deps.json
+D:\Code\Projects\SD2\bin\Debug\net10.0\RpgBattle.runtimeconfig.json
+D:\Code\Projects\SD2\bin\Debug\net10.0\RpgBattle.dll
+D:\Code\Projects\SD2\bin\Debug\net10.0\RpgBattle.pdb
+D:\Code\Projects\SD2\obj\Debug\net10.0\RpgBattle.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\Projects\SD2\obj\Debug\net10.0\RpgBattle.AssemblyInfoInputs.cache
+D:\Code\Projects\SD2\obj\Debug\net10.0\RpgBattle.AssemblyInfo.cs
+D:\Code\Projects\SD2\obj\Debug\net10.0\RpgBattle.csproj.CoreCompileInputs.cache
+D:\Code\Projects\SD2\obj\Debug\net10.0\RpgBattle.dll
+D:\Code\Projects\SD2\obj\Debug\net10.0\refint\RpgBattle.dll
+D:\Code\Projects\SD2\obj\Debug\net10.0\RpgBattle.pdb
+D:\Code\Projects\SD2\obj\Debug\net10.0\RpgBattle.genruntimeconfig.cache
+D:\Code\Projects\SD2\obj\Debug\net10.0\ref\RpgBattle.dll
