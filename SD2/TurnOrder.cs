@@ -12,12 +12,6 @@ public interface ITurnOrder
     List<Character> Preview();
 }
 
-public enum TurnOrderMode
-{
-    FixedQueue,
-    DynamicCircular
-}
-
 class FixedTurnOrder : ITurnOrder
 {
     private readonly Queue<Character> fixedTurnOrder = new();
@@ -80,19 +74,29 @@ public class DynamicTurnOrder : ITurnOrder
     {
         var node = dynamicTurnOrder.Find(c);
         if (node == null || dynamicTurnOrder.Count == 1) return;
-        if (it.CurrentNode == node) it.MoveNext();
+
+        if (node == it.CurrentNode) it.MoveNext();
         dynamicTurnOrder.RemoveNode(node);
-        dynamicTurnOrder.InsertSorted(c, (a, b) => a.Agility > b.Agility);
+
+        double speed = StatusEffectManager.GetEffectiveSpeed(c);
+        LinkedListNode<Character>? prev = null;
+        foreach (var n in dynamicTurnOrder.Nodes())
+        {
+            if (StatusEffectManager.GetEffectiveSpeed(n.Value) < speed) break;
+            prev = n;
+        }
+        if (prev == null) dynamicTurnOrder.AddFirst(c);
+        else dynamicTurnOrder.InsertAfter(prev, c);
     }
 
     public List<Character> Preview()
     {
         var result = new List<Character>();
         if (it.IsEmpty) return result;
+
         var node = it.CurrentNode;
         for (int i = 0; i < dynamicTurnOrder.Count; i++)
         {
-            if (node == null) break;
             result.Add(node.Value);
             node = dynamicTurnOrder.NextOf(node);
         }
