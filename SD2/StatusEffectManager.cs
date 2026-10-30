@@ -8,19 +8,23 @@ public class StatusEffectManager
 {
     public void Apply(Character target, StatusType type, int duration)
     {
-        if(type == StatusType.Wet) 
-            target.Effects.RemoveAll(e => e.Type == StatusType.Burning);
+        if(type == StatusType.Wet)
+        {
+            foreach (var node in target.Effects.Nodes().ToList())
+                if (node.Value.Type == StatusType.Burning)
+                    target.Effects.RemoveNode(node);
+        }
 
-        var existing = target.Effects.Items().FirstOrDefault(e => e.Type == type);
-        
+        StatusEffect? existing = null;
+        foreach ( var e in target.Effects.Items())
+        {
+            if(e.Type == type) { existing = e; break;}
+        }
+
         if(existing != null)
-        {
             existing.Duration = duration;
-        }
         else
-        {
             target.Effects.AddLast(new StatusEffect(type, duration));
-        }
 
     }
 
@@ -43,12 +47,14 @@ public class StatusEffectManager
         foreach (var effect in c.Effects.Items())
             effect.Duration--;
 
-        c.Effects.RemoveAll(e => e.Duration <= 0);
+        foreach (var node in c.Effects.Nodes().ToList())
+            if (node.Value.Duration <= 0)
+                c.Effects.RemoveNode(node);
 
         return new TurnStartResult(dotDamage, skipTurn);
     }
 
-    public double GetEffectiveSpeed(Character c)
+    public static double GetEffectiveSpeed(Character c)
     {
         double speed = c.Agility;
         if(Has(c, StatusType.Haste)) speed *= 1.5;
