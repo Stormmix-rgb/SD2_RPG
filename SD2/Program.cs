@@ -1,13 +1,21 @@
 using RpgBattle;
 
+var ui = new ConsoleUI();
+int mode = ui.ShowStartmenu();
+if (mode == 0) return;
+
 var heroes = DataLoader.LoadCharacters("characters.json");
 var data = DataLoader.LoadEnemies("enemy_groups.json");
 var enemies = DataLoader.PickRandomGroup(data, new Random());
 
-Console.WriteLine("--- Žaidėjai ---");
-foreach (var h in heroes)
-    Console.WriteLine($"{h.Name} ({h.Class}) HP {h.Hp}/{h.MaxHp} MP {h.Mp}/{h.MaxMp} | {string.Join(", ", h.SkillNames)}");
+var team = ui.PickTeam(heroes);
+var players = new LinkedList<PlayerCharacter>(team);
 
-Console.WriteLine("--- Priešai ---");
-foreach (var e in enemies)
-    Console.WriteLine($"{e.Name} ({e.Class}) HP {e.Hp}/{e.MaxHp} | {string.Join(", ", e.SkillNames)}");
+var all = new List<Character>();
+all.AddRange(players);
+all.AddRange(enemies);
+
+ITurnOrder order = mode == 1 ? new FixedTurnOrder(all) : new DynamicTurnOrder(all);
+string modeName = mode == 1 ? "Fixed" : "Dynamic";
+
+new Battle(players, enemies, order, ui, modeName).Run();
