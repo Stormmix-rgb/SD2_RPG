@@ -4,7 +4,7 @@
     "hp": 130, "mp": 20,
     "strength": 15, "defense": 14, "intelligence": 5, "agility": 6,
     "resistances": { "Fire": 0.5, "Water": 1.5, "Earth": 0.5 },
-    "skills": ["Slash", "ShieldBash", "FlameStrike"]
+    "skills": ["HeroicStrike", "ShieldBash", "FlameStrike"]
   },
   {
     "id": 2, "name": "Ifan ben-Mezd", "class": "Wayfarer",
@@ -19,5 +19,19 @@
     "strength": 5, "defense": 6, "intelligence": 16, "agility": 9,
     "resistances": { "Earth": 0.5, "Fire": 1.5, "Air": 0.5 },
     "skills": ["StoneSpike", "PoisonCloud", "MendingEarth"]
+  },
+  {
+    "id": 4, "name": "Lohse", "class": "Enchantress",
+    "hp": 85, "mp": 60,
+    "strength": 6, "defense": 8, "intelligence": 14, "agility": 8,
+    "resistances": { "Water": 0.5, "Earth": 1.5, "Air": 0.5 },
+    "skills": ["WaterBolt", "LightningStrike", "MendingWaters"]
+  },
+  {
+    "id": 5, "name": "Sebille", "class": "Shadowblade",
+    "hp": 90, "mp": 35,
+    "strength": 7, "defense": 10, "intelligence": 7, "agility": 15,
+    "resistances": { "Earth": 0.5, "Air": 1.5, "Water": 0.5 },
+    "skills": ["PoisonTip", "Chloroform", "ThrowingKnife"]
   }
 ]
