@@ -1,19 +1,13 @@
-using System.Runtime.CompilerServices;
-
 namespace RpgBattle;
 
-public record TurnStartResult(int DotDamage, bool SkipTurn);
+public record TurnStartResult(int DotDamage, bool SkipTurn, bool SpeedChanged);
 
 public class StatusEffectManager
 {
     public void Apply(Character target, StatusType type, int duration)
     {
-        if(type == StatusType.Wet)
-        {
-            foreach (var node in target.Effects.Nodes().ToList())
-                if (node.Value.Type == StatusType.Burning)
-                    target.Effects.RemoveNode(node);
-        }
+        if (type == StatusType.Wet) Remove(target, StatusType.Burning);
+        if (type == StatusType.Burning) Remove(target, StatusType.Wet);
 
         StatusEffect? existing = null;
         foreach ( var e in target.Effects.Items())
@@ -28,15 +22,30 @@ public class StatusEffectManager
 
     }
 
+    public void Remove(Character target, StatusType type)
+    {
+        var node = target.Effects.First;
+        while (node != null)
+        {
+            var next = node.Next;
+            if (node.Value.Type == type)
+                target.Effects.RemoveNode(node);
+            node = next;
+        }
+    }
+
     public static bool Has(Character c, StatusType type)
     {
-        return c.Effects.Items().Any(e => e.Type == type);
+        foreach (var e in c.Effects.Items())
+            if  (e.Type == type) return true;
+        return false;
     }
 
     public TurnStartResult StartTurn(Character c)
     {
         int dotDamage = 0;
         bool skipTurn = false;
+        bool speedChanged = false;
 
         if(Has(c, StatusType.Burning)) dotDamage += 5;
         if(Has(c, StatusType.Poisoned)) dotDamage += 5;
@@ -44,14 +53,21 @@ public class StatusEffectManager
 
         c.Hp = Math.Max(0, c.Hp - dotDamage);
 
-        foreach (var effect in c.Effects.Items())
-            effect.Duration--;
-
-        foreach (var node in c.Effects.Nodes().ToList())
+        var node = c.Effects.First;
+        while (node != null)
+        {
+            var next = node.Next;
+            node.Value.Duration--;
             if (node.Value.Duration <= 0)
+            {
+                if (node.Value.Type == StatusType.Haste || node.Value.Type == StatusType.Slow)
+                    speedChanged = true;
                 c.Effects.RemoveNode(node);
+            }
+            node = next;
+        }
 
-        return new TurnStartResult(dotDamage, skipTurn);
+        return new TurnStartResult(dotDamage, skipTurn, speedChanged);
     }
 
     public static double GetEffectiveSpeed(Character c)
