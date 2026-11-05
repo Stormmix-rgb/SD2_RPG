@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace RpgBattle;
 
 public enum Element { None, Fire, Earth, Air, Water }
-public enum StatusType { Burning, Poisoned, Wet, Stunned, Haste, Slow }
+public enum StatusType { Burning, Poisoned, Wet, Stunned, Haste, Slow, Guarding }
 public enum SkillKind { Damage, Heal, Buff }
 
 public record Skill(string Name, SkillKind Kind, Element Element, double Power, int MpCost,
@@ -18,22 +18,26 @@ public class StatusEffect
 
 public static class SkillCatalog
 {
+    public static readonly Skill Basic = new("Attack", SkillKind.Damage, Element.None, 1.0, 0, false);
     public static readonly Dictionary<string, Skill> All = new Skill[]
     { 
-        new("Slash",          SkillKind.Damage, Element.None,  1.0, 0,  false),
-        new("ShieldBash",     SkillKind.Damage, Element.None,  0.8, 5,  false, StatusType.Stunned, 1),
-        new("FlameStrike",    SkillKind.Damage, Element.Fire,  1.2, 8,  false, StatusType.Burning, 3),
-        new("PiercingArrow",  SkillKind.Damage, Element.None,  1.2, 4,  false),
-        new("PoisonDart",     SkillKind.Damage, Element.None,  0.6, 6,  false, StatusType.Poisoned, 3),
+        new("HeroicStrike",   SkillKind.Damage, Element.None,  1.6, 5,  false),
+        new("ThrowingKnife",  SkillKind.Damage, Element.None,  1.6, 5,  false),
+        new("ShieldBash",     SkillKind.Damage, Element.None,  1.3, 5,  false, StatusType.Stunned, 1),
+        new("FlameStrike",    SkillKind.Damage, Element.Fire,  2.0, 8,  false, StatusType.Burning, 3),
+        new("PiercingArrow",  SkillKind.Damage, Element.None,  1.8, 4,  false),
+        new("PoisonTip",      SkillKind.Damage, Element.None,  1.5, 6,  false, StatusType.Poisoned, 3),
+        new("PoisonDart",     SkillKind.Damage, Element.None,  1.0, 6,  false, StatusType.Poisoned, 3),
+        new("Chloroform",     SkillKind.Damage, Element.None,  0.0, 12,  false, StatusType.Stunned, 2),
         new("WindGust",       SkillKind.Buff,   Element.Air,   0.0, 6,  false, StatusType.Haste, 3),
-        new("StoneSpike",     SkillKind.Damage, Element.Earth, 1.3, 8,  true),
-        new("PoisonCloud",    SkillKind.Damage, Element.Earth, 0.5, 10, true,  StatusType.Poisoned, 3),
+        new("StoneSpike",     SkillKind.Damage, Element.Earth, 2.0, 8,  true),
+        new("PoisonCloud",    SkillKind.Damage, Element.Earth, 0.9, 10, true,  StatusType.Poisoned, 3),
         new("MendingEarth",   SkillKind.Heal,   Element.Earth, 1.0, 10, true),
-        new("WaterBolt",      SkillKind.Damage, Element.Water, 1.1, 8,  true,  StatusType.Wet, 2),
+        new("WaterBolt",      SkillKind.Damage, Element.Water, 1.8, 8,  true,  StatusType.Wet, 2),
         new("MendingWaters",  SkillKind.Heal,   Element.Water, 1.0, 10, true),
-        new("CrushingBlow",   SkillKind.Damage, Element.None,  1.4, 6,  false, StatusType.Stunned, 1),
-        new("LightningStrike",SkillKind.Damage, Element.Air,   1.4, 10, true),
-        new("TimeWarp",       SkillKind.Damage, Element.Air,   0.4, 8,  true,  StatusType.Slow, 3),
+        new("CrushingBlow",   SkillKind.Damage, Element.None,  2.2, 6,  false, StatusType.Stunned, 1),
+        new("LightningStrike",SkillKind.Damage, Element.Air,   2.2, 10, true),
+        new("TimeWarp",       SkillKind.Damage, Element.Air,   0.8, 8,  true,  StatusType.Slow, 3),
     }.ToDictionary(s => s.Name);
 }
 
