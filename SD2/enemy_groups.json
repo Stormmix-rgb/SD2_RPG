@@ -5,33 +5,48 @@
       "hp": 110, "mp": 40,
       "strength": 8, "defense": 8, "intelligence": 14, "agility": 7,
       "resistances": { "Water": 0.5, "Fire": 0.5, "Air": 1.5 },
-      "skills": ["WaterBolt", "MendingWaters", "Slash"]
+      "skills": ["WaterBolt", "MendingWaters"]
     },
     {
       "id": 102, "name": "Dallis the Hammer", "class": "Brute",
       "hp": 170, "mp": 20,
       "strength": 16, "defense": 14, "intelligence": 4, "agility": 5,
       "resistances": { "Fire": 0.5, "Water": 1.5, "Earth": 0.5 },
-      "skills": ["CrushingBlow", "Slash", "FlameStrike"]
+      "skills": ["CrushingBlow", "FlameStrike"]
     },
     {
       "id": 103, "name": "Lucian", "class": "Tomb Lord",
-      "hp": 220, "mp": 80,
+      "hp": 220, "mp": 50,
       "strength": 12, "defense": 10, "intelligence": 18, "agility": 10,
       "resistances": { "Air": 0.5, "Earth": 1.5, "Water": 0.5 },
-      "skills": ["LightningStrike", "TimeWarp", "Slash"]
+      "skills": ["LightningStrike", "TimeWarp"]
     },
     {
       "id": 104, "name": "Magister Guard", "class": "Guard",
       "hp": 60, "mp": 10,
       "strength": 11, "defense": 9, "intelligence": 3, "agility": 6,
       "resistances": { "Earth": 0.5, "Fire": 1.5, "Air": 0.5 },
-      "skills": ["Slash"]
+      "skills": ["HeroicStrike"]
+    },
+    {
+      "id": 105, "name": "Magister Archer", "class": "Guard",
+      "hp": 60, "mp": 10,
+      "strength": 6, "defense": 6, "intelligence": 3, "agility": 11,
+      "resistances": { "Earth": 1.5, "Fire": 1.5, "Air": 0.5 },
+      "skills": ["PiercingArrow"]
+    },
+    {
+      "id": 106, "name": "Bone Golem", "class": "Golem",
+      "hp": 120, "mp": 12,
+      "strength": 15, "defense": 15, "intelligence": 1, "agility": 3,
+      "resistances": { "Earth": 0.5, "Fire": 1.5, "Air": 1.5, "Water": 0.5
+      },
+      "skills": [ "CrushingBlow" ]
     }
   ],
   "groups": [
-    { "name": "Vredeman's Patrol", "members": [101, 104, 104] },
-    { "name": "The Hammer's Guard", "members": [102, 104] },
-    { "name": "Lucian's Tomb", "members": [103] }
+    { "name": "Vredeman's Patrol", "members": [101, 104, 105] },
+    { "name": "The Hammer's Guard", "members": [102, 104, 104] },
+    { "name": "Lucian's Tomb", "members": [103, 106] }
   ]
 }
